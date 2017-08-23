@@ -32,3 +32,9 @@ HEADERS += \
     tetrixboard.h \
     tetrixpiece.h \
     tetrixwindow.h
+
+DISTFILES += \
+    .travis.yml \
+    appveyor.yml \
+    app.js \
+    README.md
