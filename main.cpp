@@ -14,8 +14,8 @@ int main(int argc, char *argv[]){
     //forRand()
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
-    TetrixWindow window;
-    window.show();
+//    TetrixWindow window;
+//    window.show();
 
     MainWindow w;
     w.show();
