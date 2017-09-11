@@ -36,5 +36,5 @@ HEADERS += \
 DISTFILES += \
     .travis.yml \
     appveyor.yml \
-    app.js \
+    demo.jpg \
     README.md

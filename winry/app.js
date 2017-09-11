@@ -23,6 +23,7 @@ http.createServer((req, res) => {
     }).listen(8080, '127.0.0.1', () => {
     console.log('Http server listening on port 8080 at host 127.0.0.1');
 });
+
 net.createServer((socket) => {
     console.log('textClient connected');
     socket.on('data', (data) => {
@@ -36,17 +37,15 @@ net.createServer((socket) => {
 });
 
 
-//net.createServer((socket) => {
+// net.createServer((socket) => {
 //    console.log('imageClient connected');
 //    let imageSize = 0;
 //    let imageBufferArray = [];
 //    socket.on('data', (data) => {
 //        if (imageSize) {
-//            // 接收和拼接数据，当数据长度不够时，下一次继续
 //            imageBufferArray.push(data);
 //            let imageData = Buffer.concat(imageBufferArray);
 //            if (imageData.byteLength >= imageSize) {
-//                // 数据完整，写入文件
 //                fs.writeFile(`demo.jpg`, imageData, (err) => {
 //                    console.log('Save socket image success');
 //                    imageSize = 0;
@@ -61,6 +60,6 @@ net.createServer((socket) => {
 //    socket.on('end', () => {
 //        console.log('imageClient disconnected');
 //    });
-//}).listen(8082, () => {
+// }).listen(8082, () => {
 //    console.log('Socket server for image started on port 8082');
-//});
+// });
