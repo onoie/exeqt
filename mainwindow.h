@@ -2,27 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QVBoxLayout>
-#include <QBuffer>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QUrl>
-#include <QNetworkRequest>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QTcpSocket>
 
+#include "socketmanager.h"
 
 class MainWindow : public QMainWindow{
     Q_OBJECT
 public:
     MainWindow(QWidget *parent = 0);
     virtual ~MainWindow(){}
-    QNetworkAccessManager* networkManager;
-    QTcpSocket *textTcpSocket;
-    QTcpSocket *imageTcpSocket;
-    QByteArray imageData;
+    SocketManager *socketManager;
 };
 
 #endif // MAINWINDOW_H
