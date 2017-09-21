@@ -38,3 +38,6 @@ DISTFILES += \
     appveyor.yml \
     demo.jpg \
     README.md
+
+RESOURCES += \
+    resources/resource.qrc
