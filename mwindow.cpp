@@ -2,17 +2,6 @@
 #include "slib.h"
 #include "xwidget.h"
 #include "screen.h"
-#include <QMenuBar>
-
-
-QT_BEGIN_NAMESPACE
-class QApplication;
-class QtWidgets;
-class QDebug;
-class QListWidget;
-class QVBoxLayout;
-class QHBoxLayout;
-QT_END_NAMESPACE
 
 MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
     setAttribute(Qt::WA_TranslucentBackground,true);
@@ -23,18 +12,32 @@ MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
     XWidget *xw =  new XWidget();
     setCentralWidget(xw);
 
-    QVBoxLayout *vl = Slib::createVBoxLayout();
-    xw->setLayout(vl);
-
     QHBoxLayout *hl = Slib::createHBoxLayout();
-    vl->addLayout(hl);
+    xw->setLayout(hl);
 
-    QSize screenSize(640,400);
+    QVBoxLayout *vl = Slib::createVBoxLayout();
+    hl->addLayout(vl);
 
-    Screen *screen = new Screen;
+    int sWidth=640;
+    int sHeight=400;
+    QSize screenSize(sWidth,sHeight);
+
+    Screen *screen = new Screen(this);
     screen->setMinimumSize(screenSize);
     screen->setMaximumSize(screenSize);
-    hl->addWidget(screen);
+    vl->addWidget(screen);
+
+    console = new Console;
+    console->setMinimumWidth(sWidth);
+    console->setMaximumWidth(sWidth);
+    vl->addWidget(console);
+
+    QGraphicsScene *scene = new QGraphicsScene(QRect(0, 0, 640, 480));
+    QGraphicsView *view = new QGraphicsView(scene);
+    QGraphicsRectItem *item = new QGraphicsRectItem(100, 100, 200, 100);
+    scene->addItem(item);
+
+    view->show();
 
 
 //    networkManager = new QNetworkAccessManager();

@@ -1,11 +1,19 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include "slib.h"
+
 #include <QWidget>
+#include <QDebug>
 #include <QPainter>
 #include <QImage>
 #include <QPixmap>
 #include <QMessageBox>
+#include <QList>
+#include <QMenuBar>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 
 class Screen : public QWidget{
@@ -14,6 +22,7 @@ public:
     explicit Screen(QWidget *parent = nullptr);
     virtual ~Screen();
     QImage image;
+
     QPixmap pixmap;
     QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem();
     void loadImage(QString path){
@@ -22,18 +31,13 @@ public:
             return;
         }
         pixmap.convertFromImage(image);
-        pixmap = pixmap.scaled(50,50,Qt::KeepAspectRatio,Qt::FastTransformation);
+        pixmap = pixmap.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation);
         pixmapItem->setPixmap(pixmap);
         resize(pixmap.width(),pixmap.height());
         this->update();
     }
 protected:
-    void paintEvent(QPaintEvent *event){
-        Q_UNUSED( event )
-        QPainter painter(this);
-        painter.fillRect(rect(),QColor(255,255,255,255));
-        painter.drawPixmap(0,0,pixmap);
-    }
+    void paintEvent(QPaintEvent *event);
 };
 
 #endif // SCREEN_H

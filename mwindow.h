@@ -25,7 +25,17 @@
 #include <QGraphicsPixmapItem>
 #include <QMenuBar>
 #include <QFileDialog>
+#include <QLineEdit>
+#include "console.h"
 
+QT_BEGIN_NAMESPACE
+class QApplication;
+class QtWidgets;
+class QDebug;
+class QListWidget;
+class QVBoxLayout;
+class QHBoxLayout;
+QT_END_NAMESPACE
 
 class MWindow : public QMainWindow{
     Q_OBJECT
@@ -38,6 +48,7 @@ public:
 public slots:
     void test();
 private:
+    Console *console;
     QMenu *fileMenu;
     QAction* testAct;
     void createMenus();

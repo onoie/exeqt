@@ -27,7 +27,8 @@ include(qxp/qxp.pri)
 SOURCES += \
     main.cpp \
     screen.cpp \
-    mwindow.cpp
+    mwindow.cpp \
+    console.cpp
 
 HEADERS += \
     slib.h \
@@ -37,7 +38,8 @@ HEADERS += \
     xlabel.h \
     screen.h \
     xwidget.h \
-    mwindow.h
+    mwindow.h \
+    console.h
 
 DISTFILES += \
     .travis.yml \
