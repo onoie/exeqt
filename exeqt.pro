@@ -22,16 +22,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+include(qxp/qxp.pri)
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    screen.cpp \
+    mwindow.cpp
 
 HEADERS += \
-    mainwindow.h \
+    slib.h \
     tetrixboard.h \
     tetrixpiece.h \
-    tetrixwindow.h
+    tetrixwindow.h \
+    xlabel.h \
+    screen.h \
+    xwidget.h \
+    mwindow.h
 
 DISTFILES += \
     .travis.yml \

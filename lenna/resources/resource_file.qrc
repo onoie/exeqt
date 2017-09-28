@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>lena.bmp</file>
+        <file>img/lena.bmp</file>
     </qresource>
 </RCC>
