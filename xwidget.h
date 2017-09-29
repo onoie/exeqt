@@ -16,6 +16,7 @@ public:
         setWindowTitle(windowTitle);
         setAttribute(Qt::WA_TranslucentBackground,true);
         setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
+        this->setStyleSheet( "border: none; ");
     }
     void showAndAllwaysTop(bool checked){
         Qt::WindowFlags flags = this->windowFlags();

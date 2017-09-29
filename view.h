@@ -1,5 +1,5 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef VIEW_H
+#define VIEW_H
 
 #include "slib.h"
 
@@ -16,13 +16,10 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 
-class Screen : public QWidget{
-    Q_OBJECT
+class View : public QGraphicsView{
 public:
-    explicit Screen(QWidget *parent = nullptr);
-    virtual ~Screen();
+    explicit View(QGraphicsScene *scene, QWidget *parent = nullptr);
     QImage image;
-
     QPixmap pixmap;
     QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem();
     void loadImage(QString path){
@@ -31,7 +28,7 @@ public:
             return;
         }
         pixmap.convertFromImage(image);
-        pixmap = pixmap.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation);
+        //pixmap = pixmap.scaled(720,480,Qt::KeepAspectRatio,Qt::FastTransformation);
         pixmapItem->setPixmap(pixmap);
         resize(pixmap.width(),pixmap.height());
         this->update();
@@ -40,4 +37,4 @@ protected:
     void paintEvent(QPaintEvent *event);
 };
 
-#endif // SCREEN_H
+#endif // VIEW_H

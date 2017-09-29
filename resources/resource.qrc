@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>lena.bmp</file>
+        <file>720x480.gif</file>
     </qresource>
 </RCC>

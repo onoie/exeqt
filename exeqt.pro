@@ -26,9 +26,11 @@ include(qxp/qxp.pri)
 
 SOURCES += \
     main.cpp \
-    screen.cpp \
     mwindow.cpp \
-    console.cpp
+    console.cpp \
+    rect.cpp \
+    scene.cpp \
+    view.cpp
 
 HEADERS += \
     slib.h \
@@ -36,10 +38,12 @@ HEADERS += \
     tetrixpiece.h \
     tetrixwindow.h \
     xlabel.h \
-    screen.h \
     xwidget.h \
     mwindow.h \
-    console.h
+    console.h \
+    rect.h \
+    scene.h \
+    view.h
 
 DISTFILES += \
     .travis.yml \
