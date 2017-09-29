@@ -57,9 +57,10 @@ m_view->setMinimumSize(screenSize);
 m_view->setMaximumSize(screenSize);
 m_view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 m_view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-//Rect *item = new Rect(1, 1, sWidth-3,sHeight-3);
-//item->setPen(QPen(Qt::red));
-//m_scene->addItem(item);
+Rect *item = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
+item->setPen(QPen(Qt::white));
+item->setBrush(Qt::black);
+m_scene->addItem(item);
 //m_view->show();
 vl->addWidget(m_view);
 
