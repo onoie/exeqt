@@ -4,4 +4,5 @@ Rect::Rect(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent):Q
 }
 void Rect::mousePressEvent(QGraphicsSceneMouseEvent *event){
     qDebug() << "MousePress";
+    QGraphicsRectItem::mouseMoveEvent(event);
 }
