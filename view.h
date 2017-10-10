@@ -15,6 +15,7 @@
 #include <QGraphicsView>
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
+#include <QString>
 
 class View : public QGraphicsView{
 public:
@@ -33,6 +34,12 @@ public:
         resize(pixmap.width(),pixmap.height());
         this->update();
     }
+public slots:
+    void updateText(QString text){
+        this->text=text;
+    }
+private:
+    QString text="default";
 protected:
     void paintEvent(QPaintEvent *event);
 };

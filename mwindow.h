@@ -1,6 +1,13 @@
 #ifndef MWINDOW_H
 #define MWINDOW_H
 
+#include "console.h"
+#include "slib.h"
+#include "xwidget.h"
+#include "scene.h"
+#include "view.h"
+#include "rect.h"
+
 #include <QMainWindow>
 #include <QPainter>
 #include <QGraphicsPixmapItem>
@@ -26,7 +33,6 @@
 #include <QMenuBar>
 #include <QFileDialog>
 #include <QLineEdit>
-#include "console.h"
 
 QT_BEGIN_NAMESPACE
 class QApplication;
@@ -47,7 +53,9 @@ public:
 //    QByteArray imageData;
 public slots:
     void test();
+    void next();
 private:
+    View *view;
     Console *console;
     QMenu *fileMenu;
     QAction* testAct;

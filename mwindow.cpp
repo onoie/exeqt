@@ -1,9 +1,4 @@
 #include "mwindow.h"
-#include "slib.h"
-#include "xwidget.h"
-#include "scene.h"
-#include "view.h"
-#include "rect.h"
 
 MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
     setAttribute(Qt::WA_TranslucentBackground,true);
@@ -44,25 +39,22 @@ MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
 
 
 //QGraphicsScene *m_scene = new QGraphicsScene(QRect(0, 0, 640, 480));     //  シーン矩形部分
-Scene *m_scene = new Scene(QRect(0, 0,sWidth,sHeight));
+Scene *scene = new Scene(QRect(0, 0,sWidth,sHeight));
 //m_scene->addRect(0, 0, 640, 480, QPen(Qt::black), QBrush(Qt::white));   //  [2]
 //QGraphicsView *m_view = new QGraphicsView(m_scene);
-View *m_view = new View(m_scene);
-//view->setStyleSheet("background: transparent");
-//m_view->setAutoFillBackground(false);
-m_view->viewport()->setAutoFillBackground(false);
-m_view->loadImage(":/720x480.gif");
-//m_view->setBackgroundBrush(QBrush(Qt::gray));   //  [1]
-m_view->setMinimumSize(screenSize);
-m_view->setMaximumSize(screenSize);
-m_view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-m_view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-Rect *item = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
-item->setPen(QPen(Qt::white));
-item->setBrush(Qt::black);
-m_scene->addItem(item);
-//m_view->show();
-vl->addWidget(m_view);
+view = new View(scene);
+view->setMinimumSize(screenSize);
+view->setMaximumSize(screenSize);
+view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+//AddMouseClickRect
+Rect *rect = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
+QObject::connect(rect,SIGNAL(nextReq()),this,SLOT(next()));
+rect->setPen(QPen(Qt::white));
+rect->setBrush(Qt::black);
+scene->addItem(rect);
+view->show();
+vl->addWidget(view);
 
 
     console = new Console;
@@ -128,9 +120,6 @@ void MWindow::createMenus(){
     connect(aboutAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     helpMenu->addAction(aboutAct);
 }
-void MWindow::test(){
-    QMessageBox::information(0,"Test","TestFunction");
-}
 QAction* MWindow::createQuitAction(){
     QAction *quitAct;
     quitAct = new QAction(tr("&Quit"),this);
@@ -138,4 +127,13 @@ QAction* MWindow::createQuitAction(){
         exit(EXIT_SUCCESS);
     });
     return quitAct;
+}
+//Slot
+void MWindow::test(){
+    QMessageBox::information(0,"Test","TestFunction");
+}
+void MWindow::next(){
+    //qDebug()<<"Next:"<<msg;
+    view->updateText(QString("NextRequest@%1").arg(QDateTime::currentDateTime().toString("yyyy/MM/dd-hh:mm:ss.zzz")));
+    view->update();
 }

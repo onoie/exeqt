@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>lena.bmp</file>
         <file>720x480.gif</file>
+        <file>whisky.png</file>
     </qresource>
 </RCC>
