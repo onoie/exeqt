@@ -3,5 +3,6 @@
         <file>lena.bmp</file>
         <file>720x480.gif</file>
         <file>whisky.png</file>
+        <file>risky.png</file>
     </qresource>
 </RCC>

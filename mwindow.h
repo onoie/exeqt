@@ -54,6 +54,7 @@ public:
 public slots:
     void test();
     void next();
+    void serif(QString);
 private:
     View *view;
     Console *console;

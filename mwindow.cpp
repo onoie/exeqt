@@ -1,6 +1,7 @@
 #include "mwindow.h"
 
 MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
+    setWindowTitle("Sandbox");
     setAttribute(Qt::WA_TranslucentBackground,true);
 //    setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
     createMenus();
@@ -48,11 +49,11 @@ view->setMaximumSize(screenSize);
 view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 //AddMouseClickRect
-Rect *rect = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
-QObject::connect(rect,SIGNAL(nextReq()),this,SLOT(next()));
-rect->setPen(QPen(Qt::white));
-rect->setBrush(Qt::black);
-scene->addItem(rect);
+//Rect *rect = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
+//QObject::connect(rect,SIGNAL(nextReq()),this,SLOT(next()));
+//rect->setPen(QPen(Qt::white));
+//rect->setBrush(Qt::black);
+//scene->addItem(rect);
 view->show();
 vl->addWidget(view);
 
@@ -61,7 +62,7 @@ vl->addWidget(view);
     console->setMinimumWidth(sWidth);
     console->setMaximumWidth(sWidth);
     vl->addWidget(console);
-
+    QObject::connect(console,SIGNAL(serifReq(QString)),this,SLOT(serif(QString)));
 //    networkManager = new QNetworkAccessManager();
 //    textTcpSocket = new QTcpSocket();
 //    imageTcpSocket = new QTcpSocket();
@@ -137,3 +138,8 @@ void MWindow::next(){
     view->updateText(QString("NextRequest@%1").arg(QDateTime::currentDateTime().toString("yyyy/MM/dd-hh:mm:ss.zzz")));
     view->update();
 }
+void MWindow::serif(QString text){
+    view->updateText(text);
+    view->update();
+}
+

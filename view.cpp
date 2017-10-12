@@ -5,7 +5,7 @@ View::View(QGraphicsScene *scene, QWidget *parent):QGraphicsView(scene,parent){
     this->viewport()->setAutoFillBackground(false);
     //this->setBackgroundBrush(QBrush(Qt::gray));
     //this->loadImage(":/720x480.gif");
-    this->loadImage(":/whisky.png");
+    this->loadImage(720,480,":/risky.png");
 }
 
 void View::paintEvent(QPaintEvent *event){
@@ -16,14 +16,14 @@ void View::paintEvent(QPaintEvent *event){
     //painter.fillRect(rect(),QColor(0,0,0,255));
 
     painter.drawPixmap(0,0,pixmap);
-    painter.drawText(painter.window(), Qt::AlignCenter, text);
 
-//    QString text = "Exeqt";
-//    QFont font = painter.font();
-//    font.setBold(true);
-//    painter.setFont(font);
-//    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine));//ペンをセット
-//    painter.setBrush(QBrush(Qt::gray, Qt::SolidPattern));//ブラシセット
-//    painter.drawText(painter.window(), Qt::AlignCenter, text);//タイトル描画
+    QFont font;
+    font.setBold(true);
+    font.setPixelSize(60);
+    painter.setFont(font);
+    painter.setPen(QPen(Qt::white));
+    painter.drawText(painter.window(), Qt::AlignCenter, text);
+//    painter.setPen(QPen(Qt::white, 1, Qt::SolidLine));
+//    painter.setBrush(QBrush(Qt::gray, Qt::SolidPattern));
 //    painter.drawRect(300,300,200,80);
 }

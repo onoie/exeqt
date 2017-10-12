@@ -23,13 +23,15 @@ public:
     QImage image;
     QPixmap pixmap;
     QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem();
-    void loadImage(QString path){
+    void loadImage(int scaleX,int scaleY,QString path){
         if(!image.load(path)){
             QMessageBox::warning(0,"Warning","not found image");
             return;
         }
         pixmap.convertFromImage(image);
-        //pixmap = pixmap.scaled(720,480,Qt::KeepAspectRatio,Qt::FastTransformation);
+        if(scaleX!=0||scaleY!=0){
+            pixmap = pixmap.scaled(scaleX,scaleY,Qt::KeepAspectRatio,Qt::FastTransformation);
+        }
         pixmapItem->setPixmap(pixmap);
         resize(pixmap.width(),pixmap.height());
         this->update();
