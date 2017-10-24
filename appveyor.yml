@@ -36,6 +36,6 @@ after_build:
 
 artifacts:
   - path: release
-    name: exeqt.zip
+    name: exeqt
   - path: release/exeqt.exe
     name: exeqt.exe
