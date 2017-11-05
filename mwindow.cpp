@@ -2,67 +2,30 @@
 
 MWindow::MWindow(QWidget *parent) : QMainWindow(parent){
     setWindowTitle("Sandbox");
-    setAttribute(Qt::WA_TranslucentBackground,true);
-//    setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
     createMenus();
     this->resize(800,600);
-    int sWidth=720;//640;
-    int sHeight=480;//400
-    QSize screenSize(sWidth,sHeight);
 
     XWidget *xw =  new XWidget();
     setCentralWidget(xw);
-
     QHBoxLayout *hl = Slib::createHBoxLayout();
     xw->setLayout(hl);
-
     QVBoxLayout *vl = Slib::createVBoxLayout();
     hl->addLayout(vl);
 
-    QList<QString> list;
-    list.append("zero");
-    qDebug()<<list[0];
 
-//    Scene *scene = new Scene(QRect(0, 0, sWidth, sHeight));
-//    View *view = new View(scene);
-//    view->setStyleSheet("background: transparent");
-////    this->setAutoFillBackground(false);
-////    this->viewport()->setAutoFillBackground(false);
-//    Rect *rect = new Rect(0,0,200,200);
-//    rect->setBrush(Qt::black);
-//    scene->addItem(rect);
-//    view->setMinimumSize(screenSize);
-//    view->setMaximumSize(screenSize);
-//    view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-//    view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-//    view->loadImage(":/lena.bmp");
-//    vl->addWidget(view);
-
-
-//QGraphicsScene *m_scene = new QGraphicsScene(QRect(0, 0, 640, 480));     //  シーン矩形部分
-Scene *scene = new Scene(QRect(0, 0,sWidth,sHeight));
-//m_scene->addRect(0, 0, 640, 480, QPen(Qt::black), QBrush(Qt::white));   //  [2]
-//QGraphicsView *m_view = new QGraphicsView(m_scene);
-view = new View(scene);
-view->setMinimumSize(screenSize);
-view->setMaximumSize(screenSize);
-view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-//AddMouseClickRect
-//Rect *rect = new Rect(0,0,sWidth-1,sHeight-1);//-1=ForPen
-//QObject::connect(rect,SIGNAL(nextReq()),this,SLOT(next()));
-//rect->setPen(QPen(Qt::white));
-//rect->setBrush(Qt::black);
-//scene->addItem(rect);
-view->show();
-vl->addWidget(view);
+    view = new View();
+    view->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+    view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+    view->show();
+    vl->addWidget(view);
 
 
     console = new Console;
-    console->setMinimumWidth(sWidth);
-    console->setMaximumWidth(sWidth);
+    console->setMaximumWidth(720);
     vl->addWidget(console);
     QObject::connect(console,SIGNAL(serifReq(QString)),this,SLOT(serif(QString)));
+
+
 //    networkManager = new QNetworkAccessManager();
 //    textTcpSocket = new QTcpSocket();
 //    imageTcpSocket = new QTcpSocket();
@@ -133,13 +96,9 @@ QAction* MWindow::createQuitAction(){
 void MWindow::test(){
     QMessageBox::information(0,"Test","TestFunction");
 }
-void MWindow::next(){
-    //qDebug()<<"Next:"<<msg;
-    view->updateText(QString("NextRequest@%1").arg(QDateTime::currentDateTime().toString("yyyy/MM/dd-hh:mm:ss.zzz")));
-    view->update();
-}
+
 void MWindow::serif(QString text){
-    view->updateText(text);
+    view->setText(text);
     view->update();
 }
 

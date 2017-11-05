@@ -4,7 +4,6 @@
 #include "console.h"
 #include "slib.h"
 #include "xwidget.h"
-#include "scene.h"
 #include "view.h"
 #include "rect.h"
 
@@ -53,7 +52,6 @@ public:
 //    QByteArray imageData;
 public slots:
     void test();
-    void next();
     void serif(QString);
 private:
     View *view;

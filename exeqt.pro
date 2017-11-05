@@ -27,10 +27,7 @@ include(qxp/qxp.pri)
 SOURCES += \
     main.cpp \
     mwindow.cpp \
-    console.cpp \
-    rect.cpp \
-    scene.cpp \
-    view.cpp
+    console.cpp
 
 HEADERS += \
     slib.h \
@@ -42,7 +39,6 @@ HEADERS += \
     mwindow.h \
     console.h \
     rect.h \
-    scene.h \
     view.h
 
 DISTFILES += \
